@@ -1,0 +1,16 @@
+.sites-runtime/
+node_modules/
+*.tar.gz
+.env
+.env.*
+!.env.example
+.next/
+out/
+*.tsbuildinfo
+.vercel/
+.openai/
+npm-debug.log*
+.DS_Store
+
+.vercel
+.env*

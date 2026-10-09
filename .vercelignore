@@ -1,0 +1,11 @@
+.openai/
+.sites-runtime/
+.next/
+.git/
+node_modules/
+.env
+.env.*
+*.tsbuildinfo
+*.zip
+*.tar.gz
+npm-debug.log*
