@@ -1775,6 +1775,236 @@ nav {
 .gallery-section {
   padding-bottom: 0;
 }
+.photos-intro {
+  padding-block: 42px 50px;
+}
+.photos-back {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 32px;
+  font-size: 15px;
+  color: var(--muted);
+}
+.photos-back:hover {
+  color: var(--saffron);
+}
+.photos-intro h1 {
+  color: var(--wine);
+  font-size: clamp(34px, 4.5vw, 58px);
+  line-height: 1.5;
+  margin-bottom: 17px;
+}
+.photos-description {
+  color: var(--muted);
+  line-height: 1.9;
+}
+.photos-year-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 28px;
+  padding: 12px 20px;
+  border: 1px solid var(--line);
+  color: var(--wine);
+  font-weight: 600;
+}
+.photos-year-link span {
+  font-size: 15px;
+  font-weight: 400;
+}
+.construction-collection {
+  padding-bottom: 70px;
+}
+.construction-year-heading {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  border-block: 1px solid var(--line);
+  padding-block: 32px;
+}
+.construction-year {
+  font: 78px/1 Georgia, serif;
+  color: var(--saffron);
+  letter-spacing: -0.05em;
+}
+.construction-year-heading > div:nth-child(2) {
+  flex: 1;
+}
+.construction-year-heading h2 {
+  color: var(--wine);
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.65;
+}
+.construction-year-heading p:not(.section-label) {
+  color: var(--muted);
+  font-size: 16px;
+  margin-top: 8px;
+}
+.construction-total {
+  display: block;
+  font-size: 14px;
+  color: var(--saffron);
+  margin-top: 12px;
+}
+.construction-year-heading .button {
+  flex-shrink: 0;
+  font-size: 15px;
+}
+.construction-jump-links {
+  display: flex;
+  position: static;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 9px;
+  padding-block: 26px 12px;
+  padding-inline: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.construction-jump-links a {
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.construction-jump-links a:hover {
+  color: var(--wine);
+  border-color: var(--gold);
+}
+.construction-jump-links span {
+  color: var(--saffron);
+  margin-right: 5px;
+  font-family: Georgia, serif;
+}
+.construction-stage {
+  padding-top: 44px;
+  margin-bottom: 20px;
+}
+.construction-stage-heading {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+.construction-stage-number {
+  font: 36px/1.4 Georgia, serif;
+  color: var(--gold);
+}
+.construction-stage-heading > div {
+  flex: 1;
+}
+.construction-stage-heading h3 {
+  color: var(--wine);
+  font-size: 26px;
+  line-height: 1.7;
+}
+.construction-stage-heading p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-top: 5px;
+  max-width: 820px;
+}
+.construction-stage-range {
+  color: var(--muted);
+  font: 13px/2 Georgia, serif;
+  padding-top: 8px;
+  white-space: nowrap;
+}
+.construction-endnote {
+  border-top: 1px solid var(--line);
+  margin-top: 70px;
+  padding-top: 38px;
+  text-align: center;
+}
+.construction-endnote > span {
+  color: var(--gold);
+  font-size: 28px;
+}
+.construction-endnote p {
+  font-family: var(--serif);
+  color: var(--wine);
+  font-size: 25px;
+  margin: 12px 0 15px;
+}
+.gallery-dialog.construction-dialog {
+  width: min(940px, calc(100% - 32px));
+}
+.site-header a[aria-current="page"] {
+  color: var(--saffron);
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+@media (max-width: 1000px) {
+  .construction-year-heading {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .construction-year-heading .button {
+    margin-left: auto;
+  }
+}
+@media (max-width: 600px) {
+  .photos-intro {
+    padding-block: 26px 32px;
+  }
+  .photos-back {
+    margin-bottom: 22px;
+  }
+  .photos-description {
+    font-size: 16px;
+  }
+  .photos-description br {
+    display: none;
+  }
+  .photos-year-link {
+    gap: 12px;
+    padding-inline: 14px;
+  }
+  .construction-year-heading {
+    align-items: flex-start;
+    gap: 18px;
+    padding-block: 25px;
+  }
+  .construction-year {
+    font-size: 52px;
+  }
+  .construction-year-heading > div:nth-child(2) {
+    min-width: 200px;
+  }
+  .construction-year-heading .button {
+    margin-left: 0;
+  }
+  .construction-stage-heading {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .construction-stage-number {
+    font-size: 27px;
+  }
+  .construction-stage-heading h3 {
+    font-size: 23px;
+  }
+  .construction-stage-heading p {
+    font-size: 14px;
+  }
+  .construction-stage-range {
+    padding-top: 0;
+    margin-left: 40px;
+  }
+  .construction-jump-links {
+    gap: 7px;
+  }
+  .construction-jump-links a {
+    padding: 6px 9px;
+    font-size: 12px;
+  }
+  .construction-endnote p {
+    font-size: 22px;
+  }
+}
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));

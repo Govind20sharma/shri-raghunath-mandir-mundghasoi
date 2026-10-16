@@ -2,6 +2,12 @@
 
 The Hindi temple website built with **Next.js 16 App Router, React 19 and TypeScript**. It combines a saffron/maroon design with owner-supplied temple photographs, worship information and responsive behavior.
 
+## Photos page — 2026
+
+`/photos` is a dedicated photo page with a **2026** collection of 116 owner-supplied construction photographs. It follows the verified visual sequence from roof casting to the completed shikhar and rooftop chhatris, grouped into 11 stages. The collection year is an archive label; the WhatsApp timestamps are not asserted as capture dates.
+
+`lib/gallery-2026.ts` holds the ordered photo metadata and stage ranges, `components/construction-gallery.tsx` provides the gallery and keyboard-accessible image viewer, and `public/assets/temple/2026/` contains optimized WebP copies. Six personal/reference images from the intake are excluded from publication. The new collection appears only on `/photos`; the existing homepage hero and seven-photo gallery are retained. Shared header/footer links point to the dedicated page and return to homepage sections correctly.
+
 ## Run locally
 
 Use Node.js **20.9 or newer** (Node.js 22 LTS recommended) and npm. Run these commands in the folder containing `package.json`:

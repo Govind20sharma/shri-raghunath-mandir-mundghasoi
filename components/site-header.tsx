@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import { temple } from "@/lib/temple";
 
 export function SiteHeader() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
 
@@ -38,7 +40,7 @@ export function SiteHeader() {
       <header className="site-header">
         <a
           className="brand"
-          href="#home"
+          href="/#home"
           aria-label="श्री रघुनाथ मंदिर मुख्य पृष्ठ"
         >
           <span className="brand-mark" aria-hidden="true">
@@ -71,12 +73,14 @@ export function SiteHeader() {
               setIsOpen(false);
           }}
         >
-          <a href="#about">हमारा मंदिर</a>
-          <a href="#darshan">दर्शन समय</a>
-          <a href="#anushthan">अनुष्ठान</a>
-          <a href="#gallery">तस्वीरें</a>
-          <a href="#utsav">पर्व एवं उत्सव</a>
-          <a className="nav-contact" href="#contact">
+          <a href="/#about">हमारा मंदिर</a>
+          <a href="/#darshan">दर्शन समय</a>
+          <a href="/#anushthan">अनुष्ठान</a>
+          <a href="/photos" aria-current={pathname === "/photos" ? "page" : undefined}>
+            तस्वीरें
+          </a>
+          <a href="/#utsav">पर्व एवं उत्सव</a>
+          <a className="nav-contact" href="/#contact">
             मंदिर पधारें
           </a>
         </nav>

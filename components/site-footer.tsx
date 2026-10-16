@@ -4,7 +4,7 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <div className="wrap">
-        <a className="brand footer-brand" href="#home">
+        <a className="brand footer-brand" href="/#home">
           <span className="brand-mark" aria-hidden="true">
             ॐ
           </span>
@@ -34,8 +34,8 @@ export function SiteFooter() {
           श्री रघुनाथ मंदिर, मूंडघसोई
         </small>
         <div>
-          <a href="#darshan">दर्शन समय</a>
-          <a href="#contact">संपर्क</a>
+          <a href="/#darshan">दर्शन समय</a>
+          <a href="/#contact">संपर्क</a>
           <a
             href="https://indiapostgdsonline.gov.in/MasterPDF/Post_Details.pdf"
             target="_blank"
@@ -44,7 +44,7 @@ export function SiteFooter() {
             डाक क्षेत्र का स्रोत
           </a>
         </div>
-        <a href="#gallery">मंदिर की झलकियाँ देखें</a>
+        <a href="/photos">मंदिर की झलकियाँ देखें</a>
       </div>
     </footer>
   );
