@@ -3,12 +3,13 @@ import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ConstructionGallery } from "@/components/construction-gallery";
+import { ProposedLook } from "@/components/proposed-look";
 import { constructionPhotos } from "@/lib/gallery-2026";
 
 export const metadata: Metadata = {
   title: "तस्वीरें — 2026 | श्री रघुनाथ मंदिर, मूंडघसोई",
   description:
-    "श्री रघुनाथ मंदिर के 2026 फोटो संग्रह में निर्माण की शुरुआत, शिखर की चिनाई, साज-सज्जा और तैयार मंदिर की 116 तस्वीरें क्रम से देखें।",
+    "श्री रघुनाथ मंदिर के 2026 संग्रह में निर्माण की 116 तस्वीरें क्रम से देखें। साथ में मंदिर के भावी स्वरूप की दो संदर्भ तस्वीरें।",
   alternates: { canonical: "/photos" },
   openGraph: {
     title: "तस्वीरों में मंदिर की यात्रा | श्री रघुनाथ मंदिर",
@@ -40,12 +41,18 @@ export default function PhotosPage() {
             <br />
             मंदिर के निर्माण से तैयार रूप तक, हर पड़ाव की एक याद।
           </p>
-          <a className="photos-year-link" href="#year-2026">
-            2026 <span>निर्माण से तैयार मंदिर तक</span>
-            <span aria-hidden="true">↓</span>
-          </a>
+          <div className="photos-collection-links">
+            <a className="photos-year-link" href="#year-2026">
+              2026 <span>निर्माण से तैयार मंदिर तक</span>
+              <span aria-hidden="true">↓</span>
+            </a>
+            <a className="photos-year-link" href="#proposed-look">
+              प्रस्तावित स्वरूप <span aria-hidden="true">↓</span>
+            </a>
+          </div>
         </div>
         <ConstructionGallery />
+        <ProposedLook />
       </main>
       <SiteFooter />
     </>

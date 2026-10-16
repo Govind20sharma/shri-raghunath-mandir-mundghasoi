@@ -8,6 +8,8 @@ The Hindi temple website built with **Next.js 16 App Router, React 19 and TypeSc
 
 `lib/gallery-2026.ts` holds the ordered photo metadata and stage ranges, `components/construction-gallery.tsx` provides the gallery and keyboard-accessible image viewer, and `public/assets/temple/2026/` contains optimized WebP copies. Six personal/reference images from the intake are excluded from publication. The new collection appears only on `/photos`; the existing homepage hero and seven-photo gallery are retained. Shared header/footer links point to the dedicated page and return to homepage sections correctly.
 
+After the construction sequence, `/photos#proposed-look` displays two owner-supplied inspiration images for the desired future exterior and interior. Both are explicitly labelled as reference images and remain outside the 116-photo construction sequence. Their optimized copies live in `public/assets/temple/proposed/`; `components/proposed-look.tsx` holds their labels and captions. The homepage and its actual temple photographs are unchanged.
+
 ## Run locally
 
 Use Node.js **20.9 or newer** (Node.js 22 LTS recommended) and npm. Run these commands in the folder containing `package.json`:

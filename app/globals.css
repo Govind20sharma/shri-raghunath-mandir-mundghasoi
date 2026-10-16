@@ -1813,6 +1813,94 @@ nav {
   font-size: 15px;
   font-weight: 400;
 }
+.photos-collection-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 14px;
+}
+.proposed-look-section {
+  border-top: 1px solid var(--line);
+  padding-block: 45px 80px;
+}
+.proposed-look-heading {
+  max-width: 850px;
+  margin-bottom: 30px;
+}
+.proposed-look-intro {
+  color: var(--muted);
+  line-height: 1.9;
+  margin-top: 20px;
+}
+.proposed-look-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.proposed-look-card {
+  display: block;
+  min-width: 0;
+  background: var(--ivory);
+  border: 1px solid var(--line);
+}
+.proposed-look-card:hover {
+  border-color: var(--saffron);
+}
+.proposed-look-image {
+  display: block;
+  position: relative;
+  background: #eee1cd;
+}
+.proposed-look-image img {
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+}
+.proposed-look-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  padding: 6px 12px;
+  font-size: 13px;
+  color: var(--wine);
+  background: var(--paper);
+  border: 1px solid var(--gold);
+}
+.proposed-look-card figcaption {
+  padding: 23px 25px 27px;
+}
+.proposed-look-card h3 {
+  color: var(--wine);
+  font-size: 25px;
+  line-height: 1.7;
+}
+.proposed-look-card figcaption > p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.85;
+  margin-top: 12px;
+}
+.proposed-look-card .text-button {
+  display: inline-flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+@media (max-width: 700px) {
+  .proposed-look-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .proposed-look-image img {
+    height: auto;
+  }
+  .proposed-look-card figcaption {
+    padding: 18px 20px 22px;
+  }
+  .proposed-look-card h3 {
+    font-size: 23px;
+  }
+  .proposed-look-section {
+    padding-block: 32px 50px;
+  }
+}
 .construction-collection {
   padding-bottom: 70px;
 }
