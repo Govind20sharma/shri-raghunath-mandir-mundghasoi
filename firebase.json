@@ -1,0 +1,16 @@
+{
+  "auth": {
+    "providers": {
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Raghunath Mandir CMS",
+        "supportEmail": "govindsharma5768@gmail.com",
+        "authorizedRedirectUris": [
+          "https://raghunath-mandir-cms.firebaseapp.com/__/auth/handler"
+        ]
+      }
+    }
+  },
+  "firestore": {
+    "rules": "scripts/firestore.rules"
+  }
+}

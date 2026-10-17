@@ -6,7 +6,7 @@ The website and `/admin` run on the existing Vercel project. Firebase supplies G
 
 1. Create a Firebase project and register a Web app. Enable **Authentication → Google**. Add the production website hostname and any approved preview hostname to Authentication's authorized domains. Use `localhost` only for local development.
 2. Create the default **Cloud Firestore** database in production/locked mode. Choose a nearby region appropriate for the site's visitors. Publish the deny-all client rules in `scripts/firestore.rules`: neither visitors nor browser SDKs access database documents directly.
-3. Create a service account for the server with the minimum necessary Firestore read/write and Firebase Authentication administrative permissions. Supply the service-account values as Vercel server environment variables. Keep its private key out of Git, browser code, screenshots, and chat.
+3. Create a service account for the server with Firestore read/write (`roles/datastore.user`) and a project custom role containing `firebaseauth.users.get` and `firebaseauth.users.createSession`. These let it check revoked administrator sessions and create session cookies. Supply the service-account values as Vercel server environment variables. Keep its private key out of Git, browser code, screenshots, and chat.
 4. Copy the four Firebase Web-app identifiers into `NEXT_PUBLIC_FIREBASE_*`. They identify the app and are safe for the browser. `CMS_ADMIN_EMAILS` defaults to `govindsharma5768@gmail.com`; a comma-separated list grants additional administrators access.
 5. Google sign-in must return a verified email from this allowlist. Session creation also requires authentication within five minutes. Server cookies last 12 hours, are HttpOnly and SameSite Strict, and are Secure in production. Every protected request checks token revocation. Disable a Firebase user or revoke their refresh tokens to terminate access.
 
@@ -24,6 +24,8 @@ The production runtime is pinned to Node 24. `jwks-rsa` uses the dual-module `jo
 Use `.env.example` as the variable checklist. Store local credentials in ignored `.env.local`; set the corresponding values on the **existing Govind-owned Vercel project**, then redeploy because Next.js embeds public Firebase identifiers at build time. Keep production and preview environments separate if preview deploys should not be able to modify production content. No Firebase Storage bucket or payment-enabled Firebase Storage integration is required for this implementation.
 
 Open `/admin`, sign in with the authorized Google account, save the initial draft, preview it, then publish. Before Firebase is configured, or before its first content document exists, the site renders its current built-in content. A configured database error is surfaced; it never silently replaces an existing draft with defaults. Text editing works with Firebase alone; photo upload additionally requires Cloudinary.
+
+The checked-in `firebase.json` enables Google sign-in and deploys the locked Firestore rules for `raghunath-mandir-cms`. It does not configure Firebase Hosting or enable a paid plan. With the correct owner signed into the official Firebase CLI, use `firebase deploy --only auth,firestore:rules --project raghunath-mandir-cms` after creating the default Standard Firestore database. Authorize the website hostname in Firebase Authentication. Public content caches include the configured project ID so connecting the backend does not reuse an unconfigured site's cached defaults.
 
 ## Publishing, restore and limits
 

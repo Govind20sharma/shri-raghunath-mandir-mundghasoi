@@ -71,7 +71,7 @@ async function readPublishedContent(): Promise<CmsContent> {
   return state.publishedSnapshot ? readSnapshot(state.publishedSnapshot) : structuredClone(defaultContent);
 }
 
-const cachedPublishedContent = unstable_cache(readPublishedContent, ["mandir-cms-published-v1"], { revalidate: 300, tags: [CMS_CACHE_TAG] });
+const cachedPublishedContent = unstable_cache(readPublishedContent, ["mandir-cms-published-v1", process.env.FIREBASE_PROJECT_ID || process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "unconfigured"], { revalidate: 300, tags: [CMS_CACHE_TAG] });
 
 export async function getPublishedContent(): Promise<CmsContent> { return publicContent(await cachedPublishedContent()); }
 

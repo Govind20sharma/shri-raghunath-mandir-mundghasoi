@@ -2,6 +2,7 @@
 .sites-runtime/
 .next/
 .git/
+.vercel/
 node_modules/
 .env
 .env.*
@@ -9,3 +10,4 @@ node_modules/
 *.zip
 *.tar.gz
 npm-debug.log*
+firebase-debug.log*
