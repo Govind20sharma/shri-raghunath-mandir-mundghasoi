@@ -1,10 +1,13 @@
 "use client";
 
+import { CmsText, useCmsContent, useCmsCopy } from "@/components/cms-content-provider";
+
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { temple } from "@/lib/temple";
 
 export function SiteHeader() {
+  const { settings: temple } = useCmsContent();
+  const copy = useCmsCopy();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
@@ -31,24 +34,22 @@ export function SiteHeader() {
   return (
     <>
       <a className="skip-link" href="#main">
-        मुख्य सामग्री पर जाएँ
-      </a>
+        <CmsText id="header.text001" /></a>
       <div className="blessing">
-        <span>॥ श्री सीतारामचन्द्राभ्यां नमः ॥</span>
-        <a href={temple.phoneHref}>अजय शर्मा · {temple.displayPhone}</a>
+        <span><CmsText id="header.text002" /></span>
+        <a href={temple.phoneHref}>{temple.contacts[0]?.name ?? temple.name} · {temple.displayPhone}</a>
       </div>
       <header className="site-header">
         <a
           className="brand"
           href="/#home"
-          aria-label="श्री रघुनाथ मंदिर मुख्य पृष्ठ"
+          aria-label={copy("header.homeLabel", "", { name: temple.name })}
         >
           <span className="brand-mark" aria-hidden="true">
-            ॐ
-          </span>
+            <CmsText id="header.text004" /></span>
           <span>
-            <strong>श्री रघुनाथ मंदिर</strong>
-            <small>मूंडघसोई · राजस्थान</small>
+            <strong>{temple.name}</strong>
+            <small><CmsText id="header.text006" /></small>
           </span>
         </a>
         <button
@@ -57,7 +58,7 @@ export function SiteHeader() {
           className="menu-toggle"
           aria-expanded={isOpen}
           aria-controls="navigation"
-          aria-label={isOpen ? "मेन्यू बंद करें" : "मेन्यू खोलें"}
+          aria-label={copy(isOpen ? "header.menuClose" : "header.menuOpen")}
           onClick={() => setIsOpen((open) => !open)}
         >
           <span></span>
@@ -67,22 +68,20 @@ export function SiteHeader() {
         <nav
           id="navigation"
           className={isOpen ? "open" : undefined}
-          aria-label="मुख्य मेन्यू"
+          aria-label={copy("header.menuLabel")}
           onClick={(event) => {
             if (event.target instanceof Element && event.target.closest("a"))
               setIsOpen(false);
           }}
         >
-          <a href="/#about">हमारा मंदिर</a>
-          <a href="/#darshan">दर्शन समय</a>
-          <a href="/#anushthan">अनुष्ठान</a>
+          <a href="/#about"><CmsText id="header.text007" /></a>
+          <a href="/#darshan"><CmsText id="header.text008" /></a>
+          <a href="/#anushthan"><CmsText id="header.text009" /></a>
           <a href="/photos" aria-current={pathname === "/photos" ? "page" : undefined}>
-            तस्वीरें
-          </a>
-          <a href="/#utsav">पर्व एवं उत्सव</a>
+            <CmsText id="header.text010" /></a>
+          <a href="/#utsav"><CmsText id="header.text011" /></a>
           <a className="nav-contact" href="/#contact">
-            मंदिर पधारें
-          </a>
+            <CmsText id="header.text012" /></a>
         </nav>
       </header>
     </>

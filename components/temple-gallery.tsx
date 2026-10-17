@@ -1,10 +1,15 @@
 "use client";
 
+import { CmsText, useCmsContent, useCmsCopy } from "@/components/cms-content-provider";
+
 import Image from "next/image";
 import { useEffect, useRef, useState, type MouseEvent } from "react";
-import { templePhotos } from "@/lib/gallery";
+import { activePhotos } from "@/lib/cms/model";
 
 export function TempleGallery() {
+  const { homePhotos } = useCmsContent();
+  const templePhotos = activePhotos(homePhotos);
+  const copy = useCmsCopy();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -57,25 +62,22 @@ export function TempleGallery() {
       >
         <div className="section-top">
           <div>
-            <p className="section-label">हमारे मंदिर के दर्शन</p>
+            <p className="section-label"><CmsText id="homeGallery.text001" /></p>
             <h2 className="section-title" id="gallery-title">
-              मंदिर की झलकियाँ।
-            </h2>
+              <CmsText id="homeGallery.text002" /></h2>
           </div>
           <p className="section-intro">
-            प्रभु का श्रृंगार, मंदिर का आँगन और आराधना का अपना स्थान।
-            <br />
-            किसी भी तस्वीर पर क्लिक करके बड़े दर्शन करें।
-          </p>
+            <CmsText id="homeGallery.text003" /><br />
+            <CmsText id="homeGallery.text004" /></p>
         </div>
         <div className="gallery-grid">
           {templePhotos.map((photo, index) => (
             <button
               type="button"
               className="gallery-card"
-              key={photo.src}
+              key={photo.id}
               data-photo={index}
-              aria-label={`${photo.title} — बड़ी तस्वीर देखें`}
+              aria-label={`${photo.title} — ${copy("gallery.viewLarge")}`}
               aria-haspopup="dialog"
               onClick={(event) => {
                 triggerRef.current = event.currentTarget;
@@ -86,8 +88,8 @@ export function TempleGallery() {
                 <Image
                   src={photo.src}
                   alt={photo.alt}
-                  width={960}
-                  height={1280}
+                  width={photo.width}
+                  height={photo.height}
                   sizes="(max-width: 600px) 45vw, (max-width: 1000px) 42vw, 280px"
                 />
                 <span className="gallery-expand" aria-hidden="true">
@@ -104,16 +106,13 @@ export function TempleGallery() {
           ))}
           <div className="gallery-invitation">
             <span className="gallery-om" aria-hidden="true">
-              ॐ
-            </span>
-            <p className="section-label">सपरिवार पधारिए</p>
+              <CmsText id="homeGallery.text005" /></span>
+            <p className="section-label"><CmsText id="homeGallery.text006" /></p>
             <h3>
-              कुछ पल
-              <br />
-              प्रभु के साथ।
-            </h3>
-            <a className="text-button" href="#contact">
-              मंदिर का रास्ता <span aria-hidden="true">↗</span>
+              <CmsText id="homeGallery.text007" /><br />
+              <CmsText id="homeGallery.text008" /></h3>
+            <a className="text-button" href="/#contact">
+              <CmsText id="homeGallery.text009" /><span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
@@ -141,7 +140,7 @@ export function TempleGallery() {
             className="gallery-close"
             type="button"
             onClick={() => dialogRef.current?.close()}
-            aria-label="तस्वीर बंद करें"
+            aria-label={copy("gallery.close")}
           >
             ×
           </button>
@@ -151,8 +150,8 @@ export function TempleGallery() {
             className="gallery-full-image"
             src={selected.src}
             alt={selected.alt}
-            width={960}
-            height={1280}
+            width={selected.width}
+            height={selected.height}
             sizes="(max-width: 600px) 90vw, 600px"
           />
         )}
@@ -161,7 +160,7 @@ export function TempleGallery() {
             className="gallery-arrow"
             type="button"
             onClick={() => movePhoto(-1)}
-            aria-label="पिछली तस्वीर"
+            aria-label={copy("gallery.previous")}
           >
             ←
           </button>
@@ -173,7 +172,7 @@ export function TempleGallery() {
             className="gallery-arrow"
             type="button"
             onClick={() => movePhoto(1)}
-            aria-label="अगली तस्वीर"
+            aria-label={copy("gallery.next")}
           >
             →
           </button>

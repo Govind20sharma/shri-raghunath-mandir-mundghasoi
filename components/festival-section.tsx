@@ -1,10 +1,13 @@
 "use client";
 
+import { CmsText, useCmsContent, useCmsCopy } from "@/components/cms-content-provider";
+
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { festivalInformation, type FestivalId } from "@/lib/festivals";
-import { temple } from "@/lib/temple";
 
 export function FestivalSection() {
+  const { settings: temple } = useCmsContent();
+  const copy = useCmsCopy();
   const [selectedId, setSelectedId] = useState<FestivalId | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -55,30 +58,25 @@ export function FestivalSection() {
         <div className="wrap">
           <div className="section-top">
             <div>
-              <p className="section-label">हमारी सांस्कृतिक परंपरा</p>
+              <p className="section-label"><CmsText id="festivals.text001" /></p>
               <h2 className="section-title" id="utsav-title">
-                भक्ति के रंग, पर्वों के संग।
-              </h2>
+                <CmsText id="festivals.text002" /></h2>
             </div>
             <p className="section-intro">
-              आराधना और उत्सव की परंपराओं का भाव जानें।
-              <br />
-              मंदिर के आयोजन की जानकारी फोन पर लें।
-            </p>
+              <CmsText id="festivals.text003" /><br />
+              <CmsText id="festivals.text004" /></p>
           </div>
           <div className="festival-grid festival-grid-four">
             <article className="festival-card">
               <div className="festival-number">
-                <span>चैत्र</span>
-                <strong>नवमी</strong>
-                <small>धर्म और मर्यादा का उत्सव</small>
+                <span><CmsText id="festivals.text005" /></span>
+                <strong><CmsText id="festivals.text006" /></strong>
+                <small><CmsText id="festivals.text007" /></small>
               </div>
               <div className="festival-copy">
-                <h3>श्री राम नवमी</h3>
+                <h3><CmsText id="festivals.text008" /></h3>
                 <p>
-                  भगवान श्रीराम के जन्मोत्सव का पावन पर्व। राम नाम, प्रार्थना और
-                  उनके आदर्शों के स्मरण का दिन।
-                </p>
+                  <CmsText id="festivals.text009" /></p>
                 <button
                   className="text-button"
                   data-festival="ramnavami"
@@ -87,22 +85,20 @@ export function FestivalSection() {
                   }
                   aria-haspopup="dialog"
                 >
-                  पर्व का महत्व जानें <span aria-hidden="true">+</span>
+                  <CmsText id="festivals.text010" /><span aria-hidden="true">+</span>
                 </button>
               </div>
             </article>
             <article className="festival-card">
               <div className="festival-number">
-                <span>आश्विन</span>
-                <strong>दशमी</strong>
-                <small>सत्य और सदाचार की विजय</small>
+                <span><CmsText id="festivals.text011" /></span>
+                <strong><CmsText id="festivals.text012" /></strong>
+                <small><CmsText id="festivals.text013" /></small>
               </div>
               <div className="festival-copy">
-                <h3>विजयादशमी</h3>
+                <h3><CmsText id="festivals.text014" /></h3>
                 <p>
-                  बुराई पर अच्छाई की जीत का संदेश। श्रीराम के साहस, धैर्य और
-                  सत्य के मार्ग से प्रेरणा लेने का पर्व।
-                </p>
+                  <CmsText id="festivals.text015" /></p>
                 <button
                   className="text-button"
                   data-festival="dussehra"
@@ -111,22 +107,20 @@ export function FestivalSection() {
                   }
                   aria-haspopup="dialog"
                 >
-                  पर्व का महत्व जानें <span aria-hidden="true">+</span>
+                  <CmsText id="festivals.text016" /><span aria-hidden="true">+</span>
                 </button>
               </div>
             </article>
             <article className="festival-card">
               <div className="festival-number">
-                <span>कार्तिक</span>
-                <strong>अमावस्या</strong>
-                <small>आशा और उजाले का स्वागत</small>
+                <span><CmsText id="festivals.text017" /></span>
+                <strong><CmsText id="festivals.text018" /></strong>
+                <small><CmsText id="festivals.text019" /></small>
               </div>
               <div className="festival-copy">
-                <h3>दीपावली</h3>
+                <h3><CmsText id="festivals.text020" /></h3>
                 <p>
-                  श्रीराम के अयोध्या लौटने की स्मृति से जुड़ा प्रकाश पर्व। दीप
-                  जलाने और खुशियाँ बाँटने का अवसर।
-                </p>
+                  <CmsText id="festivals.text021" /></p>
                 <button
                   className="text-button"
                   data-festival="diwali"
@@ -135,22 +129,20 @@ export function FestivalSection() {
                   }
                   aria-haspopup="dialog"
                 >
-                  पर्व का महत्व जानें <span aria-hidden="true">+</span>
+                  <CmsText id="festivals.text022" /><span aria-hidden="true">+</span>
                 </button>
               </div>
             </article>
             <article className="festival-card">
               <div className="festival-number">
-                <span>कृष्ण जन्मोत्सव</span>
-                <strong>जन्माष्टमी</strong>
-                <small>प्रेम और भक्ति का उत्सव</small>
+                <span><CmsText id="festivals.text023" /></span>
+                <strong><CmsText id="festivals.text024" /></strong>
+                <small><CmsText id="festivals.text025" /></small>
               </div>
               <div className="festival-copy">
-                <h3>श्री कृष्ण जन्माष्टमी</h3>
+                <h3><CmsText id="festivals.text026" /></h3>
                 <p>
-                  मंदिर में मनाया जाने वाला श्री कृष्ण जन्मोत्सव। श्रद्धा और
-                  आनंद के इस पर्व के आयोजन की जानकारी मंदिर से लें।
-                </p>
+                  <CmsText id="festivals.text027" /></p>
                 <button
                   className="text-button"
                   data-festival="janmashtami"
@@ -159,7 +151,7 @@ export function FestivalSection() {
                   }
                   aria-haspopup="dialog"
                 >
-                  उत्सव की जानकारी <span aria-hidden="true">+</span>
+                  <CmsText id="festivals.text028" /><span aria-hidden="true">+</span>
                 </button>
               </div>
             </article>
@@ -178,19 +170,17 @@ export function FestivalSection() {
             type="button"
             onClick={() => dialogRef.current?.close()}
             className="dialog-close"
-            aria-label="बंद करें"
+            aria-label={copy("festival.close")}
           >
             ×
           </button>
-          <p className="section-label">पर्व और परंपरा</p>
-          <h2 id="festival-dialog-title">{selected?.title}</h2>
-          <p id="festival-dialog-description">{selected?.description}</p>
+          <p className="section-label"><CmsText id="festivals.text029" /></p>
+          <h2 id="festival-dialog-title">{selectedId && copy(`festival.${selectedId}.title`, selected?.title)}</h2>
+          <p id="festival-dialog-description">{selectedId && copy(`festival.${selectedId}.description`, selected?.description)}</p>
           <div className="dialog-note">
-            मंदिर में होने वाले आयोजन, पूजा और समय की जानकारी फोन पर लें।
-          </div>
+            <CmsText id="festivals.text030" /></div>
           <a className="button primary" href={temple.phoneHref}>
-            {temple.phone} पर बात करें
-          </a>
+            {temple.phone} <CmsText id="festivals.text031" /></a>
         </div>
       </dialog>
     </>

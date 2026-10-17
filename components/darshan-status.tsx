@@ -1,13 +1,27 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getDarshanStatus } from "@/lib/darshan";
+import { useCmsContent, useCmsCopy } from "@/components/cms-content-provider";
+import { getCmsScheduleValues } from "@/lib/cms/copy-fields";
 
 export function DarshanStatus() {
-  const [status, setStatus] = useState("दर्शन · सुबह 5–11 बजे और शाम 5–9 बजे");
+  const { settings } = useCmsContent();
+  const copy = useCmsCopy();
+  const schedule = getCmsScheduleValues(settings);
+  const [status, setStatus] = useState<string | null>(null);
 
   useEffect(() => {
-    const update = () => setStatus(getDarshanStatus());
+    const update = () => {
+      const now = new Date();
+      const parts = new Intl.DateTimeFormat("en-GB", { timeZone: settings.timeZone, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(now);
+      const hour = Number(parts.find(part => part.type === "hour")?.value ?? 0) + Number(parts.find(part => part.type === "minute")?.value ?? 0) / 60;
+      const { morning, evening } = settings.darshan;
+      const key = hour >= morning.opens && hour < morning.closes ? "status.morning"
+        : hour >= evening.opens && hour < evening.closes ? "status.evening"
+        : hour >= morning.closes && hour < evening.opens ? "status.nextEvening"
+        : hour >= evening.closes ? "status.nextTomorrow" : "status.nextMorning";
+      setStatus(copy(key, "", getCmsScheduleValues(settings)));
+    };
     update();
     const timer = window.setInterval(update, 60_000);
     document.addEventListener("visibilitychange", update);
@@ -15,11 +29,11 @@ export function DarshanStatus() {
       window.clearInterval(timer);
       document.removeEventListener("visibilitychange", update);
     };
-  }, []);
+  }, [settings, copy]);
 
   return (
     <div className="darshan-status" id="darshan-status" role="status">
-      {status}
+      {status ?? copy("status.initial", "", schedule)}
     </div>
   );
 }

@@ -1,18 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import { temple } from "@/lib/temple";
+import { useCmsContent, useCmsCopy } from "@/components/cms-content-provider";
 
 export function CopyAddress() {
+  const { settings: temple } = useCmsContent();
+  const copy = useCmsCopy();
   const [status, setStatus] = useState("");
 
   async function copyAddress() {
     try {
       await navigator.clipboard.writeText(temple.address);
-      setStatus("मंदिर का पता कॉपी हो गया।");
+      setStatus(copy("copyAddress.success"));
     } catch {
       setStatus(
-        "पता कॉपी नहीं हो पाया। ऊपर दिए पते को चुनकर कॉपी कर सकते हैं।",
+        copy("copyAddress.error"),
       );
     }
   }
@@ -25,7 +27,7 @@ export function CopyAddress() {
         id="copy-address"
         onClick={copyAddress}
       >
-        पता कॉपी करें
+        {copy("copyAddress.label")}
       </button>
       <p
         id="copy-status"
