@@ -1532,6 +1532,23 @@ export const cmsCopyFields: CmsCopyField[] = [
 
 cmsCopyFields.push(...photosCopyFields);
 
+const compactFieldLimits: Record<string, number> = {
+  "header.text004": 4,
+  "home.text009": 12,
+  "home.text010": 16,
+  "home.text011": 12,
+  "header.text007": 32,
+  "header.text008": 32,
+  "header.text009": 32,
+  "header.text010": 32,
+  "header.text011": 32,
+  "header.text012": 32,
+};
+for (const field of cmsCopyFields) {
+  const limit = compactFieldLimits[field.key] ?? (["ॐ", "॥", "✦"].includes(field.defaultValue.trim()) ? 4 : undefined);
+  if (limit !== undefined) field.maxLength = Math.max(limit, field.defaultValue.length);
+}
+
 const copyDefaults = Object.fromEntries(cmsCopyFields.map(field => [field.key, field.defaultValue]));
 
 export function getCmsScheduleValues(settings: CmsSettings) {
