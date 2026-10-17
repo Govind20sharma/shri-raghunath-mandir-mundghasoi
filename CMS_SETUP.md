@@ -19,6 +19,8 @@ The website and `/admin` run on the existing Vercel project. Firebase supplies G
 
 ## Environment and deployment
 
+The production runtime is pinned to Node 24. `jwks-rsa` uses the dual-module `jose` 5.10.0 through a scoped npm override: Vercel disables `require(ESM)`, which otherwise prevents Firebase Admin 14 from loading. `npm run test:cms` reproduces that host restriction and verifies public-key import and signature verification. See the [upstream Firebase issue](https://github.com/firebase/firebase-admin-node/issues/3181).
+
 Use `.env.example` as the variable checklist. Store local credentials in ignored `.env.local`; set the corresponding values on the **existing Govind-owned Vercel project**, then redeploy because Next.js embeds public Firebase identifiers at build time. Keep production and preview environments separate if preview deploys should not be able to modify production content. No Firebase Storage bucket or payment-enabled Firebase Storage integration is required for this implementation.
 
 Open `/admin`, sign in with the authorized Google account, save the initial draft, preview it, then publish. Before Firebase is configured, or before its first content document exists, the site renders its current built-in content. A configured database error is surfaced; it never silently replaces an existing draft with defaults. Text editing works with Firebase alone; photo upload additionally requires Cloudinary.
